@@ -16,7 +16,7 @@ const ChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hello! I'm your AI assistant. How can I help you today?",
+      text: "Hello! I'm Seedling AI, your agricultural assistant. How can I help you grow your farming knowledge today?",
       isBot: true,
       timestamp: new Date(),
     },
@@ -62,35 +62,35 @@ const ChatBot = () => {
 
   const getBotResponse = (userInput: string): string => {
     const responses = [
-      "That's an interesting question! Let me think about that for a moment.",
-      "I understand what you're asking. Here's what I can tell you...",
-      "Great question! Based on what you've shared, I'd suggest...",
-      "Thanks for sharing that with me. Here's my perspective on this topic.",
-      "I appreciate you bringing this up. Let me provide some insights.",
-      "That's a thoughtful question. Here's how I would approach this...",
+      "That's a great question about farming! Let me help you with that.",
+      "In agriculture, this is quite important. Here's what I recommend...",
+      "Based on my agricultural knowledge, I'd suggest considering these factors.",
+      "That's an excellent farming topic! Here's some guidance on this.",
+      "For sustainable agriculture, this approach usually works well.",
+      "Great question! In my experience with crop management, I'd say...",
     ];
     return responses[Math.floor(Math.random() * responses.length)];
   };
 
   return (
-    <div className="flex flex-col h-screen max-w-4xl mx-auto bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="flex flex-col h-screen max-w-5xl mx-auto bg-gradient-to-br from-green-50 via-white to-emerald-50 shadow-2xl rounded-lg overflow-hidden">
       <ChatHeader />
       
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-gradient-to-b from-transparent to-green-50/30">
         {messages.map((message) => (
           <ChatMessage key={message.id} message={message} />
         ))}
         
         {isTyping && (
-          <div className="flex items-start space-x-3 animate-fade-in">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
-              <Bot className="w-4 h-4 text-white" />
+          <div className="flex items-start space-x-4 animate-fade-in">
+            <div className="w-10 h-10 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+              <Bot className="w-5 h-5 text-white" />
             </div>
-            <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl px-4 py-3 shadow-sm">
+            <div className="bg-white/90 backdrop-blur-sm border border-green-200 rounded-2xl px-5 py-4 shadow-lg">
               <div className="flex space-x-1">
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
               </div>
             </div>
           </div>

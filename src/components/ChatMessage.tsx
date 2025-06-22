@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Bot, User } from 'lucide-react';
+import { Bot, User, Leaf } from 'lucide-react';
 import type { Message } from './ChatBot';
 
 interface ChatMessageProps {
@@ -14,30 +14,30 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
 
   if (message.isBot) {
     return (
-      <div className="flex items-start space-x-3 animate-fade-in">
-        <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
-          <Bot className="w-4 h-4 text-white" />
+      <div className="flex items-start space-x-4 animate-fade-in">
+        <div className="w-10 h-10 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg ring-2 ring-green-100">
+          <Leaf className="w-5 h-5 text-white" />
         </div>
-        <div className="max-w-xs lg:max-w-md">
-          <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl px-4 py-3 shadow-sm hover:shadow-md transition-shadow">
-            <p className="text-gray-800 text-sm leading-relaxed">{message.text}</p>
+        <div className="max-w-md lg:max-w-lg xl:max-w-xl">
+          <div className="bg-white/90 backdrop-blur-sm border border-green-200 rounded-2xl px-5 py-4 shadow-lg hover:shadow-xl transition-all duration-300">
+            <p className="text-gray-800 text-sm leading-relaxed font-medium">{message.text}</p>
           </div>
-          <p className="text-xs text-gray-500 mt-1 ml-2">{formatTime(message.timestamp)}</p>
+          <p className="text-xs text-green-600 mt-2 ml-3 font-medium">{formatTime(message.timestamp)}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex items-start space-x-3 justify-end animate-fade-in">
-      <div className="max-w-xs lg:max-w-md">
-        <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl px-4 py-3 shadow-sm hover:shadow-md transition-shadow">
-          <p className="text-white text-sm leading-relaxed">{message.text}</p>
+    <div className="flex items-start space-x-4 justify-end animate-fade-in">
+      <div className="max-w-md lg:max-w-lg xl:max-w-xl">
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl px-5 py-4 shadow-lg hover:shadow-xl transition-all duration-300">
+          <p className="text-white text-sm leading-relaxed font-medium">{message.text}</p>
         </div>
-        <p className="text-xs text-gray-500 mt-1 mr-2 text-right">{formatTime(message.timestamp)}</p>
+        <p className="text-xs text-green-600 mt-2 mr-3 text-right font-medium">{formatTime(message.timestamp)}</p>
       </div>
-      <div className="w-8 h-8 bg-gradient-to-r from-gray-600 to-gray-800 rounded-full flex items-center justify-center flex-shrink-0">
-        <User className="w-4 h-4 text-white" />
+      <div className="w-10 h-10 bg-gradient-to-r from-slate-600 to-slate-700 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg ring-2 ring-slate-100">
+        <User className="w-5 h-5 text-white" />
       </div>
     </div>
   );
