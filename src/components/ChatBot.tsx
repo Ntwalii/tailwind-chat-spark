@@ -47,29 +47,48 @@ const ChatBot = () => {
     setInputValue('');
     setIsTyping(true);
 
-    // Simulate bot response
-    setTimeout(() => {
+    try {
+      // Replace this URL with your actual backend endpoint
+      const response = await fetch('https://your-backend-api.com/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: text.trim(),
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: getBotResponse(text),
+        text: data.response || "I'm sorry, I couldn't process your request right now.",
         isBot: true,
         timestamp: new Date(),
       };
-      setMessages(prev => [...prev, botMessage]);
-      setIsTyping(false);
-    }, 1000 + Math.random() * 2000);
-  };
 
-  const getBotResponse = (userInput: string): string => {
-    const responses = [
-      "That's a great question about farming! Let me help you with that.",
-      "In agriculture, this is quite important. Here's what I recommend...",
-      "Based on my agricultural knowledge, I'd suggest considering these factors.",
-      "That's an excellent farming topic! Here's some guidance on this.",
-      "For sustainable agriculture, this approach usually works well.",
-      "Great question! In my experience with crop management, I'd say...",
-    ];
-    return responses[Math.floor(Math.random() * responses.length)];
+      setMessages(prev => [...prev, botMessage]);
+    } catch (error) {
+      console.error('Error sending message to backend:', error);
+      
+      // Fallback response when backend is unavailable
+      const fallbackMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: "I'm currently having trouble connecting to my knowledge base. Please try again in a moment, or check that your backend is running.",
+        isBot: true,
+        timestamp: new Date(),
+      };
+      
+      setMessages(prev => [...prev, fallbackMessage]);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   return (
